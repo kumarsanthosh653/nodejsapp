@@ -36,7 +36,7 @@ podTemplate(yaml: '''
     
   node(POD_LABEL) {
     stage('Get a nodejs project') {
-      git url: 'https://github.com/PottaAkhil/nodejs-OBT.git', branch: 'master'    
+      git url: 'https://github.com/saiteja3747/nodejsapp.git', branch: 'master'    
       container('nodejs') {
         stage('Build a nodejs project') {
           sh '''
@@ -48,9 +48,9 @@ podTemplate(yaml: '''
     
     stage('Build nodejs Image') {
       container('kaniko') {
-        stage('Build a Go project') {
+        stage('Build a project') {
           sh '''
-            /kaniko/executor --context `pwd` --destination 957288871734.dkr.ecr.ap-southeast-1.amazonaws.com/images:$BUILD_NUMBER && \
+            /kaniko/executor --context `pwd` --destination 031141521775.dkr.ecr.ap-south-1.amazonaws.com/nodejsapp/images:$BUILD_NUMBER && \
              /kaniko/executor --context `pwd` --destination 957288871734.dkr.ecr.ap-southeast-1.amazonaws.com/images:latest
           '''
         }
