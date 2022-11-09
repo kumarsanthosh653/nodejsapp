@@ -8,8 +8,8 @@ podTemplate(yaml: '''
         command:
         - sleep
         args:
-        - 999999
-      - name: kubectl
+        - 99d
+        - name: kubectl
         image: bitnami/kubectl
         command:
         - sleep
@@ -33,30 +33,27 @@ podTemplate(yaml: '''
             - key: .dockerconfigjson
               path: config.json
 ''') {
-    
   node(POD_LABEL) {
-    stage('Get a nodejs project') {
-      git url: 'https://github.com/saiteja3747/nodejsapp.git', branch: 'master'    
-      container('nodejs') {
-        stage('Build a nodejs project') {
+    stage('Get a Nodejs project') {
+      git url: '', branch: 'main'
+      container('node') {
+        stage('Build a Nodejs project') {
           sh '''
-            echo pwd
+          echo pwd
           '''
         }
       }
     }
-    
-    stage('Build nodejs Image') {
+
+    stage('Build Nodejs Image') {
       container('kaniko') {
-        stage('Build a project') {
+        stage('Build a Go project') {
           sh '''
-            /kaniko/executor --context `pwd` --destination 031141521775.dkr.ecr.ap-south-1.amazonaws.com/nodejsapp:$BUILD_NUMBER && \
-             /kaniko/executor --context `pwd` --destination 031141521775.dkr.ecr.ap-south-1.amazonaws.com/nodejsapp:latest
+            /kaniko/executor --context `pwd` --destination 031141521775.dkr.ecr.ap-south-1.amazonaws.com/nodejsapp
           '''
         }
       }
     }
-    
-  
-}
+
+  }
 }
