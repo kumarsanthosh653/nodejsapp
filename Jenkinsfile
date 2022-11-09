@@ -35,7 +35,7 @@ podTemplate(yaml: '''
 ''') {
   node(POD_LABEL) {
     stage('Get a Nodejs project') {
-      git url: '', branch: 'main'
+      git url: 'https://github.com/saiteja3747/nodejsapp.git', branch: 'main'
       container('node') {
         stage('Build a Nodejs project') {
           sh '''
