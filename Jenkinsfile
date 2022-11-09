@@ -24,7 +24,7 @@ podTemplate(yaml: '''
     volumeMounts:
       - name: docker-config
         mountPath: /kaniko/.docker
-  volumes:
+    volumes:
     - name: docker-config
       configMap:
         name: docker-config
