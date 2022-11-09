@@ -16,7 +16,7 @@ podTemplate(yaml: '''
         args:
         - 9999999
       - name: kaniko
-    image: gcr.io/kaniko-project/executor:debug
+    image: gcr.io/kaniko-project/executor:debug-539ddefcae3fd6b411a95982a830d987f4214251
     imagePullPolicy: Always
     command:
     - cat
