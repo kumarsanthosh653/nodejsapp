@@ -8,48 +8,55 @@ podTemplate(yaml: '''
         command:
         - sleep
         args:
-        - 99d
-        - name: kubectl
+        - 999999
+      - name: kubectl
         image: bitnami/kubectl
         command:
         - sleep
         args:
         - 9999999
       - name: kaniko
-    image: gcr.io/kaniko-project/executor:debug-539ddefcae3fd6b411a95982a830d987f4214251
-    imagePullPolicy: Always
-    command:
-    - cat
-    tty: true
-    volumeMounts:
-      - name: docker-config
-        mountPath: /kaniko/.docker
-    volumes:
-    - name: docker-config
-      configMap:
-        name: docker-config
+        image: gcr.io/kaniko-project/executor:debug
+        command:
+        - sleep
+        args:
+        - 9999999
+        volumeMounts:
+        - name: kaniko-secret
+          mountPath: /kaniko/.docker
+      restartPolicy: Never
+      volumes:
+      - name: kaniko-secret
+        secret:
+            secretName: dockercred
+            items:
+            - key: .dockerconfigjson
+              path: config.json
 ''') {
+    
   node(POD_LABEL) {
-    stage('Get a Nodejs project') {
-      git url: 'https://github.com/saiteja3747/nodejsapp.git', branch: 'main'
-      container('node') {
-        stage('Build a Nodejs project') {
+    stage('Get a nodejs project') {
+      git url: 'https://github.com/saiteja3747/nodejsapp.git', branch: 'master'    
+      container('nodejs') {
+        stage('Build a nodejs project') {
           sh '''
-          echo pwd
+            echo pwd
           '''
         }
       }
     }
-
-    stage('Build Nodejs Image') {
+    
+    stage('Build nodejs Image') {
       container('kaniko') {
-        stage('Build a Go project') {
+        stage('Build a project') {
           sh '''
-            /kaniko/executor --context `pwd` --destination 031141521775.dkr.ecr.ap-south-1.amazonaws.com/nodejsapp:latest --destination  031141521775.dkr.ecr.ap-south-1.amazonaws.com/nodejsapp:v$BUILD_NUMBER
+            /kaniko/executor --context `pwd` --destination 031141521775.dkr.ecr.ap-south-1.amazonaws.com/nodejsapp:$BUILD_NUMBER && \
+             /kaniko/executor --context `pwd` --destination 031141521775.dkr.ecr.ap-south-1.amazonaws.com/nodejsapp:latest
           '''
         }
       }
     }
-
-  }
+    
+  
+}
 }
