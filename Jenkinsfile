@@ -16,19 +16,19 @@ podTemplate(yaml: '''
         args:
         - 9999999
       - name: kaniko
-        image: gcr.io/kaniko-project/executor:latest
+        image: gcr.io/kaniko-project/executor:debug
         command:
         - sleep
         args:
         - 9999999
         volumeMounts:
         - name: kaniko-secret
-          mountPath: /secret
+          mountPath: /kaniko/.docker
       restartPolicy: Never
       volumes:
       - name: kaniko-secret
         secret:
-            secretName: kaniko-secret
+            secretName: dockercred
             items:
             - key: .dockerconfigjson
               path: config.json
