@@ -62,9 +62,8 @@ podTemplate(yaml: '''
 		      body: "Jenkins Pipeline Job for Nodeapp got completed !!!",
 		      to: "saiteja.indukuri@minfytech.com"
 		    )
-       }
-    }
+               }
+   }
 }  
   
-}
-}
+
