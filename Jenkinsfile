@@ -56,7 +56,15 @@ podTemplate(yaml: '''
         }
       }
     }
-    
+    stage ('Notification'){
+		emailext (
+		      subject: "Job Completed",
+		      body: "Jenkins Pipeline Job for Nodeapp got completed !!!",
+		      to: "saiteja.indukuri@minfytech.com"
+		    )
+       }
+    }
+}  
   
 }
 }
