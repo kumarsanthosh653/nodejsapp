@@ -58,13 +58,14 @@ podTemplate(yaml: '''
     }
     stage ( 'k8s deployment') {
       container ('kubectl') {
-	stage (' Deploy nodejs app') {
+	stage ('Deploy nodejs app') {
 	  sh 'kubectl apply -f flux.yml' 
 	  sh 'kubectl aply -f ingress.yml'
 	}
       }
     }
   }
+}
 		  
   
 
