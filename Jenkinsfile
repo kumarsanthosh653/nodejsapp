@@ -60,7 +60,7 @@ podTemplate(yaml: '''
 		emailext (
 		      subject: "Job Completed",
 		      body: "Jenkins Pipeline Job for Nodeapp got completed !!!",
-		      to: "saiteja.indukuri@minfytech.com"
+		      to: "sairamaraju.indukuri@gmail.com"
 		    )
                }
    }
