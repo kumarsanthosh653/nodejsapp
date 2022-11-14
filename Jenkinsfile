@@ -56,14 +56,15 @@ podTemplate(yaml: '''
         }
       }
     }
-    stage ('Notification'){
-		emailext (
-		      subject: "Job Completed",
-		      body: "Jenkins Pipeline Job for Nodeapp got completed !!!",
-		      to: "sairamaraju.indukuri@gmail.com"
-		    )
-               }
-   
-}  
+    stage ( 'k8s deployment') {
+      container ('kubectl') {
+	stage (' Deploy nodejs app') {
+	  sh 'kubectl apply -f flux.yml' 
+	  sh 'kubectl aply -f ingress.yml'
+	}
+      }
+    }
+  }
+		  
   
 
