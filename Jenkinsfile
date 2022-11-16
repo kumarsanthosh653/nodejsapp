@@ -32,7 +32,7 @@ podTemplate(yaml: '''
             items:
             - key: .dockerconfigjson
               path: config.json
-''') {
+''')
 pipeline {
     agent any
     stage('Get a nodejs project') {
