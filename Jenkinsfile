@@ -33,7 +33,7 @@ podTemplate(yaml: '''
             - key: .dockerconfigjson
               path: config.json
 ''')
-pipeline {
+  pipeline {
     agent any
     stage('Get a nodejs project') {
       git url: 'https://github.com/saiteja3747/nodejsapp.git', branch: 'master'    
@@ -56,17 +56,18 @@ pipeline {
         }
       }
     }
-      stage('K8S Deploy') {
-        steps{   
-            script {
-                withKubeConfig([credentialsId: 'K8S', serverUrl: ' https://0E786C50A0DE69E68F3483D29B073D13.yl4.ap-south-1.eks.amazonaws.com']) {
-                sh ('kubectl apply -f  flux.yaml')
-                sh ('kubectl apply -f  ingress.yaml')    
-                }
-            }
-        }
-     }
+    stage('K8S Deploy') {
+      steps{   
+        script {
+          withKubeConfig([credentialsId: 'K8S', serverUrl: ' https://0E786C50A0DE69E68F3483D29B073D13.yl4.ap-south-1.eks.amazonaws.com']) {
+            sh ('kubectl apply -f  flux.yaml')
+            sh ('kubectl apply -f  ingress.yaml')
+          }
+        }  
+      }
+    }
   }
+}  
 
      
 	  
