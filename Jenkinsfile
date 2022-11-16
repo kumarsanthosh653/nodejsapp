@@ -45,7 +45,6 @@ podTemplate(yaml: '''
         }
       }
     }
-    
     stage('Build nodejs Image') {
       container('kaniko') {
         stage('Build a project') {
