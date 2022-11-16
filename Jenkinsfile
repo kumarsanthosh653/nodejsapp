@@ -56,6 +56,8 @@ podTemplate(yaml: '''
         }
       }
     }
+  }
+}
      
 	  
   
