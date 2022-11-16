@@ -32,8 +32,8 @@ podTemplate(yaml: '''
             items:
             - key: .dockerconfigjson
               path: config.json
-''')
-
+''') {
+    
   node(POD_LABEL) {
     stage('Get a nodejs project') {
       git url: 'https://github.com/saiteja3747/nodejsapp.git', branch: 'master'    
@@ -45,9 +45,10 @@ podTemplate(yaml: '''
         }
       }
     }
+    
     stage('Build nodejs Image') {
       container('kaniko') {
-        stage('Build a project') {
+        stage('Build a Go project') {
           sh '''
             /kaniko/executor --context `pwd` --destination 031141521775.dkr.ecr.ap-south-1.amazonaws.com/nodejsapp:$BUILD_NUMBER && \
              /kaniko/executor --context `pwd` --destination 031141521775.dkr.ecr.ap-south-1.amazonaws.com/nodejsapp:latest
@@ -56,17 +57,17 @@ podTemplate(yaml: '''
       }
     }
     stage('K8S Deploy') {
-      steps{   
-        script {
-          withKubeConfig([credentialsId: 'K8S', serverUrl: ' https://0E786C50A0DE69E68F3483D29B073D13.yl4.ap-south-1.eks.amazonaws.com']) {
-            sh ('kubectl apply -f  flux.yaml')
-            sh ('kubectl apply -f  ingress.yaml')
-          }
-        }  
-      }
-    }
+        steps{   
+            script {
+                withKubeConfig([credentialsId: 'k8s', serverUrl: 'https://0E786C50A0DE69E68F3483D29B073D13.yl4.ap-south-1.eks.amazonaws.com']) {
+                sh ('kubectl apply -f  flux.yaml')
+                sh ('kubectl apply -f  ingress.yaml')    
+                }
+            }
+        }
+     }
   }
-
+}
 
 
      
