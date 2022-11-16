@@ -33,8 +33,7 @@ podTemplate(yaml: '''
             - key: .dockerconfigjson
               path: config.json
 ''') {
-    
-  pipeline {
+pipeline {
     agent any
     stage('Get a nodejs project') {
       git url: 'https://github.com/saiteja3747/nodejsapp.git', branch: 'master'    
