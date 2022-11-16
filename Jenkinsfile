@@ -33,6 +33,7 @@ podTemplate(yaml: '''
             - key: .dockerconfigjson
               path: config.json
 ''')
+
   node(POD_LABEL) {
     stage('Get a nodejs project') {
       git url: 'https://github.com/saiteja3747/nodejsapp.git', branch: 'master'    
