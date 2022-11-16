@@ -34,7 +34,8 @@ podTemplate(yaml: '''
               path: config.json
 ''') {
     
-  node(POD_LABEL) {
+  pipeline {
+    agent any
     stage('Get a nodejs project') {
       git url: 'https://github.com/saiteja3747/nodejsapp.git', branch: 'master'    
       container('nodejs') {
