@@ -56,17 +56,7 @@ podTemplate(yaml: '''
         }
       }
     }
-     stage('K8S Deploy') {
-       steps{   
-          script {
-            withKubeConfig([credentialsId: 'K8S', serverUrl: '']) {
-            sh ('kubectl apply -f  flux.yml')
-	    sh ('kubectl apply -f  ingress.yml')
-	  }
-       }
-     }
-  }
-}
-}		  
+     
+	  
   
 
