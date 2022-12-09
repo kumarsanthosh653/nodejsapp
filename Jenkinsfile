@@ -50,8 +50,8 @@ podTemplate(yaml: '''
       container('kaniko') {
         stage('Build a Go project') {
           sh '''
-            /kaniko/executor --context `pwd` --destination 696757124794.dkr.ecr.ap-south-1.amazonaws.com/san:$BUILD_NUMBER && \
-             /kaniko/executor --context `pwd` --destination 696757124794.dkr.ecr.ap-south-1.amazonaws.com/san:latest
+            /kaniko/executor --context `pwd` --destination 583413461794.dkr.ecr.ap-south-1.amazonaws.com/san:$BUILD_NUMBER && \
+             /kaniko/executor --context `pwd` --destination 583413461794.dkr.ecr.ap-south-1.amazonaws.com/san:latest
           '''
         }
       }
