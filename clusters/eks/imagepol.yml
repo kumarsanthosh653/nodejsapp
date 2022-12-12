@@ -8,4 +8,4 @@ spec:
     name: nodapp
   policy:
     semver:
-      range: x 
+      range: 19.x.0 
