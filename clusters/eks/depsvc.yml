@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: nodapp
-          image: 583413461794.dkr.ecr.ap-south-1.amazonaws.com/san:19.3.0
+          image: 583413461794.dkr.ecr.ap-south-1.amazonaws.com/san:14
           imagePullPolicy: IfNotPresent
           ports:
            -  containerPort: 3000
