@@ -20,6 +20,6 @@ spec:
     push:
       branch: master
   update:
-    path: ./clusters/my-cluster
+    path: ./clusters/eks
     strategy: Setters
 
