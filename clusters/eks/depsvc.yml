@@ -3,6 +3,8 @@ kind: Deployment
 metadata:
   name: nodapp
   namespace: default
+  annotations:
+    fluxcd.io/automated: "true"
 spec:
   selector:
     matchLabels:
