@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: nodapp
-          image: 583413461794.dkr.ecr.ap-south-1.amazonaws.com/san:19.8.0 # {"$imagepolicy": "flux-system:san"}
+          image: 583413461794.dkr.ecr.ap-south-1.amazonaws.com/san:19.11.0 # {"$imagepolicy": "flux-system:san"}
           imagePullPolicy: Always
           ports:
            -  containerPort: 3000
