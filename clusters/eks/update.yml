@@ -20,6 +20,6 @@ spec:
     push:
       branch: master
   update:
-    path: ./clusters/eks
+    path: ./clusters/eks/imagepol.yml
     strategy: Setters
 
