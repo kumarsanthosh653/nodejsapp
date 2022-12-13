@@ -2,7 +2,7 @@ var express = require('express');
 var app = express();
 
 app.get('/', function (req, res) {
-    res.send('{ "response": "Hello, Welcome to Minfy Technology pvt ltd" }');
+    res.send('{ "response": "Hello, Welcome to Minfy Technology pvt ltd..." }');
 });
 
 app.get('/will', function (req, res) {
