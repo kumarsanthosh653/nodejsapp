@@ -1,4 +1,4 @@
-FROM node:latest
+FROM node:19.16.0
 WORKDIR /usr/src/app
 COPY nodeapp/* /
 RUN npm install
