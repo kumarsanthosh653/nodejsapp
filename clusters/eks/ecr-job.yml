@@ -40,7 +40,7 @@ metadata:
   namespace: flux-system
 spec:
   suspend: false
-  schedule: * * * * *
+  schedule: 0 * * * *
   failedJobsHistoryLimit: 1
   successfulJobsHistoryLimit: 1
   jobTemplate:
