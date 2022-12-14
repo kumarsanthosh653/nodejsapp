@@ -2,7 +2,7 @@ var express = require('express');
 var app = express();
 
 app.get('/', function (req, res) {
-    res.send('{ "response": "Hello, Welcome to Minfy Technologys hyderabad" }');
+    res.send('{ "response": "Hello, Welcome to Minfy Technologys hyderabad hammaya" }');
 });
 
 app.get('/will', function (req, res) {
