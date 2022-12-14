@@ -14,8 +14,8 @@ spec:
         branch: master
     commit:
       author:
-        email: fluxcdbot@users.noreply.github.com
-        name: fluxcdbot
+        email: kumarsanthosh653@gmail.com
+        name: nodejsapp
       messageTemplate: '{{range .Updated.Images}}{{println .}}{{end}}'
     push:
       branch: master
